@@ -42,6 +42,7 @@ import { users } from "./backend/db/users.js";
 import { v4 as uuid } from "uuid";
 
 export function makeServer({ environment = "development" } = {}) {
+  return null;
   return new Server({
     serializers: {
       application: RestSerializer,
@@ -87,7 +88,6 @@ export function makeServer({ environment = "development" } = {}) {
     },
 
     routes() {
-      this.namespace = "api";
       // auth routes (public)
       this.post("/auth/signup", signupHandler.bind(this));
       this.post("/auth/login", loginHandler.bind(this));
@@ -127,6 +127,8 @@ export function makeServer({ environment = "development" } = {}) {
       // order routes (private)
       this.get("/user/orders", getOrderItemsHandler.bind(this));
       this.post("/user/orders", addItemToOrdersHandler.bind(this));
+
+      // do not prevent pinta
     },
   });
 }

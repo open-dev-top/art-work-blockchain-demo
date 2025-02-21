@@ -15,6 +15,7 @@ import { Profile } from "../pages/UserProfile/Profile/Profile";
 import { Addresses } from "../pages/UserProfile/Addresses/Addresses";
 import { Orders } from "../pages/UserProfile/Orders/Orders";
 import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
+import SellNFT from "../components/SellNFT";
 
 export const NavRoutes = () => {
   return (
@@ -62,6 +63,12 @@ export const NavRoutes = () => {
         <Route path="/profile/orders" element={<Orders />} />
         <Route path="/profile/addresses" element={<Addresses />} />
       </Route>
+      <Route
+        path="/sellNFT"
+        element={
+          <SellNFT />
+        }
+      />
     </Routes>
   );
 };
