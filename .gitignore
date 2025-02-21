@@ -26,3 +26,7 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+#Hardhat files
+cache
+artifacts
