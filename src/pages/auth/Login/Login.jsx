@@ -1,11 +1,13 @@
 import React from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsEyeSlash } from "react-icons/bs";
 import { BsEye } from "react-icons/bs";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../../contexts/AuthProvider.js";
 import { useData } from "../../../contexts/DataProvider.js";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount } from 'wagmi';
 
 export const Login = () => {
   const { loading } = useData();
@@ -14,6 +16,17 @@ export const Login = () => {
     useAuth();
 
   const { email, password } = loginCredential;
+  const { isConnected } = useAccount();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isConnected) {
+      navigate("/profile");
+    }else{
+      navigate("/login")
+    }
+  }, [isConnected, navigate]);
 
   return (
     !loading && (
@@ -89,6 +102,7 @@ export const Login = () => {
               Login with Test Credentials
             </button>
           </div>
+          <ConnectButton>Connect with Wallet</ConnectButton>
           <Link className="new-account" to="/signup">
             Create a new account?
           </Link>

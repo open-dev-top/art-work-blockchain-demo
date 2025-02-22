@@ -11,7 +11,8 @@ import { Logout } from "../pages/auth/Logout/Logout";
 import { Checkout } from "../pages/Checkout/Checkout";
 import { Wishlist } from "../pages/Wishlist/Wishlist";
 import { UserProfile } from "../pages/UserProfile/UserProfile";
-import { Profile } from "../pages/UserProfile/Profile/Profile";
+// import { Profile } from "../pages/UserProfile/Profile/Profile";
+import Profile from "../components/Profile";
 import { Addresses } from "../pages/UserProfile/Addresses/Addresses";
 import { Orders } from "../pages/UserProfile/Orders/Orders";
 import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
@@ -53,7 +54,7 @@ export const NavRoutes = () => {
           </RequiresAuth>
         }
       />
-      <Route path="/profile" element={<UserProfile />}>
+      {/* <Route path="/profile" element={<UserProfile />}>
         <Route
           path="/profile/"
           element={
@@ -64,7 +65,8 @@ export const NavRoutes = () => {
         />
         <Route path="/profile/orders" element={<Orders />} />
         <Route path="/profile/addresses" element={<Addresses />} />
-      </Route>
+      </Route> */}
+      <Route path="/profile" element={<Profile />}></Route>
       <Route
         path="/sellNFT"
         element={
@@ -77,8 +79,8 @@ export const NavRoutes = () => {
           <Marketplace />
         }
       />
-      <Route path="/nftPage" element={<NFTPage />}/> 
-      <Route path="/nftPage/:tokenId" element={<NFTPage />}/>
+      <Route path="/nftPage" element={<NFTPage />} />
+      <Route path="/nftPage/:tokenId" element={<NFTPage />} />
     </Routes>
   );
 };
