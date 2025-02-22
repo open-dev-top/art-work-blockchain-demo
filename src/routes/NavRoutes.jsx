@@ -16,6 +16,8 @@ import { Addresses } from "../pages/UserProfile/Addresses/Addresses";
 import { Orders } from "../pages/UserProfile/Orders/Orders";
 import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
 import SellNFT from "../components/SellNFT";
+import Marketplace from "../components/Marketplace";
+import NFTPage from "../components/NFTpage";
 
 export const NavRoutes = () => {
   return (
@@ -69,6 +71,14 @@ export const NavRoutes = () => {
           <SellNFT />
         }
       />
+      <Route
+        path="/marketplace"
+        element={
+          <Marketplace />
+        }
+      />
+      <Route path="/nftPage" element={<NFTPage />}/> 
+      <Route path="/nftPage/:tokenId" element={<NFTPage />}/>
     </Routes>
   );
 };

@@ -151,7 +151,8 @@ export const Header = () => {
         <Link>
           <button className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" onClick={connectWebsite}>{connected ? "Connected" : "Connect Wallet"}</button>
         </Link>
-        <Link to="/sellNFT">List My NFT</Link>
+        <NavLink style={getActiveStyle} to="/marketplace">Marketplace</NavLink>
+        <NavLink style={getActiveStyle} to="/sellNFT">List My NFT</NavLink>
         <NavLink
           onClick={() => setShowHamburger(true)}
           style={getActiveStyle}
