@@ -5,11 +5,7 @@ import Marketplace from '../Marketplace.json';
 import { useLocation } from "react-router";
 import { ethers } from "ethers";
 
-export default function SellNFT () {
-    if (window.server) {
-        window.server.shutdown();
-      }      
-
+export default function SellNFT () { 
     const [formParams, updateFormParams] = useState({ name: '', description: '', price: ''});
     const [fileURL, setFileURL] = useState(null);
     // const ethers = require("ethers");
@@ -108,7 +104,7 @@ export default function SellNFT () {
             enableButton();
             updateMessage("");
             updateFormParams({ name: '', description: '', price: ''});
-            window.location.replace("/")
+            window.location.replace("/marketplace")
         }
         catch(e) {
             alert( "Upload error"+e )
@@ -141,7 +137,7 @@ export default function SellNFT () {
                 <br></br>
                 <div className="text-red-500 text-center">{message}</div>
                 <button onClick={listNFT} className="font-bold mt-10 w-full bg-purple-500 text-white rounded p-2 shadow-lg" id="list-button">
-                    List NFT
+                    Mint NFT
                 </button>
             </form>
         </div>

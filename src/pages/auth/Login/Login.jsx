@@ -8,6 +8,7 @@ import { useAuth } from "../../../contexts/AuthProvider.js";
 import { useData } from "../../../contexts/DataProvider.js";
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
+import { RainbowKitCustomConnectButton } from "../../../components/RainbowKitCustomConnectButton.js";
 
 export const Login = () => {
   const { loading } = useData();
@@ -23,14 +24,12 @@ export const Login = () => {
   useEffect(() => {
     if (isConnected) {
       navigate("/profile");
-    }else{
-      navigate("/login")
     }
   }, [isConnected, navigate]);
 
   return (
     !loading && (
-      <div className="login-container">
+      <div className="login-container ">
         <h2>Login</h2>
         <form
           onSubmit={(e) => loginHandler(e, email, password)}
@@ -94,15 +93,18 @@ export const Login = () => {
           {error && <span className="error">{error}</span>}
           <div className="login-btn-container">
             <input value="Login" type="submit" />
-            <button
+            {/* <button
               onClick={(e) => {
                 loginHandler(e, "aniketsaini65@gmail.com", "aniketSaini258");
               }}
             >
               Login with Test Credentials
-            </button>
+            </button> */}
           </div>
-          <ConnectButton>Connect with Wallet</ConnectButton>
+          <div className="connect-button-container">
+            <ConnectButton 
+              label="Connect With Wallet" />
+          </div>
           <Link className="new-account" to="/signup">
             Create a new account?
           </Link>

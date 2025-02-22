@@ -4,6 +4,7 @@ import MarketplaceJSON from "../Marketplace.json";
 import axios from "axios";
 import { useState } from "react";
 import { GetIpfsUrlFromPinata } from "../utils";
+import { useAccount } from "wagmi";
 
 export default function Marketplace() {
 const sampleData = [
@@ -37,8 +38,12 @@ const sampleData = [
 ];
 const [data, updateData] = useState(sampleData);
 const [dataFetched, updateFetched] = useState(false);
+const {isConnected} = useAccount();
 
 async function getAllNFTs() {
+    if(!isConnected){
+        return;
+    }
     const ethers = require("ethers");
     //After adding your Hardhat network to your metamask, this code will get providers and signers
     const provider = new ethers.providers.Web3Provider(window.ethereum);

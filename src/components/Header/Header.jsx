@@ -26,6 +26,7 @@ import {
   useWaitForTransactionReceipt,
   useWriteContract,
 } from 'wagmi';
+import { Loader } from "../Loader/Loader.jsx";
 
 export const Header = () => {
   const { auth } = useAuth();
@@ -37,7 +38,7 @@ export const Header = () => {
     return { color: isActive ? "white" : "" };
   };
   // const [connected, toggleConnect] = useState(false);
-  // const location = useLocation();
+  const location = useLocation();
   // const [currAddress, updateAddress] = useState('0x');
 
   const totalProductsInCart = userDataState.cartProducts?.reduce(
@@ -107,7 +108,13 @@ export const Header = () => {
   // });
 
   const { isConnected } = useAccount();
+  useEffect(() => {
+    if (!isConnected && location.pathname === "/sellNFT") {
+      navigate("/login");
+    }
+  }, [isConnected, location.pathname, navigate]);
 
+  const { loading, setLoading } = useData(); // 需要 setLoading 方法
   return (
     <nav>
       <div className="nav-logo-home-button">
@@ -151,14 +158,14 @@ export const Header = () => {
           Explore
         </NavLink>
         {/* <NavLink
-          onClick={() => setShowHamburger(true)}
-          style={getActiveStyle}
-          to={auth.isAuth ? "/profile" : "/login"}
-        >
-          {!auth.isAuth ? "Login" : "Profile"}
-        </NavLink> */}
+        onClick={() => setShowHamburger(true)}
+        style={getActiveStyle}
+        to={auth.isAuth ? "/profile" : "/login"}
+      >
+        {!auth.isAuth ? "Login" : "Profile"}
+      </NavLink> */}
         <NavLink style={getActiveStyle} to="/marketplace">Marketplace</NavLink>
-        <NavLink style={getActiveStyle} to="/sellNFT">List My NFT</NavLink>
+        <NavLink style={getActiveStyle} to="/sellNFT">Sell NFT</NavLink>
         <NavLink
           onClick={() => setShowHamburger(true)}
           style={getActiveStyle}
@@ -167,36 +174,36 @@ export const Header = () => {
           {isConnected ? "Profile" : "Login"}
         </NavLink>
         {/* <Link>
-          <button className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" onClick={connectWebsite}>{connected ? "Connected" : "Connect Wallet"}</button>
-        </Link> */}
+        <button className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" onClick={connectWebsite}>{connected ? "Connected" : "Connect Wallet"}</button>
+      </Link> */}
         {/* <ConnectButton>Connect with Wallet</ConnectButton> */}
         {/* <NavLink
-          onClick={() => setShowHamburger(true)}
-          style={getActiveStyle}
-          to="wishlist"
-        >
-          <span>{!showHamburger ? "Wishlist" : ""}</span>
-          <CgHeart size={25} className="wishlist" />{" "}
-          {isProductInWishlist() && (
-            <span className="cart-count cart-count-mobile">
-              {totalProductsInWishlist}
-            </span>
-          )}
-        </NavLink> */}
+        onClick={() => setShowHamburger(true)}
+        style={getActiveStyle}
+        to="wishlist"
+      >
+        <span>{!showHamburger ? "Wishlist" : ""}</span>
+        <CgHeart size={25} className="wishlist" />{" "}
+        {isProductInWishlist() && (
+          <span className="cart-count cart-count-mobile">
+            {totalProductsInWishlist}
+          </span>
+        )}
+      </NavLink> */}
         {/* <NavLink
-          onClick={() => setShowHamburger(true)}
-          style={getActiveStyle}
-          to="/cart"
-        >
-          <span>{!showHamburger ? "Cart" : ""}</span>
-          <CgShoppingCart size={25} className="cart" />{" "}
-          {isProductInCart() && (
-            <span className="cart-count cart-count-mobile">
-              {" "}
-              {totalProductsInCart}{" "}
-            </span>
-          )}
-        </NavLink> */}
+        onClick={() => setShowHamburger(true)}
+        style={getActiveStyle}
+        to="/cart"
+      >
+        <span>{!showHamburger ? "Cart" : ""}</span>
+        <CgShoppingCart size={25} className="cart" />{" "}
+        {isProductInCart() && (
+          <span className="cart-count cart-count-mobile">
+            {" "}
+            {totalProductsInCart}{" "}
+          </span>
+        )}
+      </NavLink> */}
       </div>
       {showHamburger && (
         <div className="hamburger-icon" onClick={() => setShowHamburger(false)}>
