@@ -12,15 +12,7 @@ export default function NFTPage(props) {
     const [dataFetched, updateDataFetched] = useState(false);
     const [message, updateMessage] = useState("");
     const [currAddress, updateCurrAddress] = useState("0x");
-    const navigate = useNavigate();
-    const { tokenIdSelected } = useParams();
     const { isConnected } = useAccount();
-
-    useEffect(() => {
-        if (!tokenIdSelected || tokenIdSelected === "undefined") {
-            navigate("/login");
-        }
-    }, [tokenIdSelected, navigate]);
 
     async function getNFTData(tokenId) {
         if (!isConnected) {
@@ -89,7 +81,6 @@ export default function NFTPage(props) {
 
     return (
         <div style={{ "min-height": "100vh" }}>
-            {/* <Navbar></Navbar> */}
             <div className="flex ml-20 mt-20">
                 <img src={data.image} alt="" className="w-2/5" />
                 <div className="text-xl ml-20 space-y-8 text-purple-500 shadow-2xl rounded-lg border-2 p-5">

@@ -3,25 +3,31 @@ const hre = require("hardhat");
 const fs = require("fs");
 
 async function main() {
-  // const [deployer] = await ethers.getSigners();
-  // const balance = await deployer.getBalance();
+  console.log("Deploying the contract...");
+
   const Marketplace = await hre.ethers.getContractFactory("NFTMarketplace");
   const marketplace = await Marketplace.deploy();
 
   await marketplace.deployed();
 
+  console.log(`✅ Contract deployed successfully!`);
+  console.log(`📜 Contract Address: ${marketplace.address}`);
+  console.log(`🔗 Transaction Hash: ${marketplace.deployTransaction.hash}`);
+
   const data = {
     address: marketplace.address,
-    abi: JSON.parse(marketplace.interface.format('json'))
-  }
+    abi: JSON.parse(marketplace.interface.format("json")),
+  };
 
-  //This writes the ABI and address to the mktplace.json
-  fs.writeFileSync('./src/Marketplace.json', JSON.stringify(data))
+  // Save the ABI and address
+  fs.writeFileSync("./src/Marketplace.json", JSON.stringify(data, null, 2));
+
+  console.log("✅ Marketplace.json file has been updated.");
 }
 
 main()
   .then(() => process.exit(0))
   .catch((error) => {
-    console.error(error);
+    console.error("❌ Deployment failed:", error);
     process.exit(1);
   });

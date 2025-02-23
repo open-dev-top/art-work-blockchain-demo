@@ -1,6 +1,7 @@
 require("dotenv").config();
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-ethers");
+require("@nomiclabs/hardhat-etherscan")
 
 // eslint-disable-next-line no-undef
 task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
@@ -23,6 +24,12 @@ module.exports = {
       chainId: 11155111,
     }
   },
+  etherscan: {
+    // npx hardhat verify --network <NETWORK> <CONTRACT_ADDRESS> <CONSTRUCTOR_PARAMETERS>
+    apiKey: {
+        sepolia: process.env.ETHERSCAN_API_KEY,
+    },
+},
   solidity: {
     version: "0.8.4",
     settings: {
