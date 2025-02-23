@@ -27,7 +27,7 @@ export const HeroVideo = () => {
       </div>
 
       <button
-        onClick={() => Navigate("product-listing")}
+        onClick={() => Navigate("/marketplace")}
         className="shop-now-btn"
       >
         Shop Now

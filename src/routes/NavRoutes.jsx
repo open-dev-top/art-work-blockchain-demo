@@ -10,11 +10,7 @@ import { Signup } from "../pages/auth/Signup/Signup";
 import { Logout } from "../pages/auth/Logout/Logout";
 import { Checkout } from "../pages/Checkout/Checkout";
 import { Wishlist } from "../pages/Wishlist/Wishlist";
-import { UserProfile } from "../pages/UserProfile/UserProfile";
-// import { Profile } from "../pages/UserProfile/Profile/Profile";
 import Profile from "../components/Profile";
-import { Addresses } from "../pages/UserProfile/Addresses/Addresses";
-import { Orders } from "../pages/UserProfile/Orders/Orders";
 import { PageNotFound } from "../pages/PageNotFound/PageNotFound";
 import SellNFT from "../components/SellNFT";
 import Marketplace from "../components/Marketplace";
@@ -54,18 +50,6 @@ export const NavRoutes = () => {
           </RequiresAuth>
         }
       />
-      {/* <Route path="/profile" element={<UserProfile />}>
-        <Route
-          path="/profile/"
-          element={
-            <RequiresAuth>
-              <Profile />
-            </RequiresAuth>
-          }
-        />
-        <Route path="/profile/orders" element={<Orders />} />
-        <Route path="/profile/addresses" element={<Addresses />} />
-      </Route> */}
       <Route path="/profile" element={<Profile />}></Route>
       <Route
         path="/sellNFT"

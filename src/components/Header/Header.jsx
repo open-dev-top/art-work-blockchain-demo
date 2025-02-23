@@ -37,9 +37,7 @@ export const Header = () => {
   const getActiveStyle = ({ isActive }) => {
     return { color: isActive ? "white" : "" };
   };
-  // const [connected, toggleConnect] = useState(false);
   const location = useLocation();
-  // const [currAddress, updateAddress] = useState('0x');
 
   const totalProductsInCart = userDataState.cartProducts?.reduce(
     (acc, curr) => {
@@ -55,58 +53,6 @@ export const Header = () => {
   const isProductInWishlist = () =>
     Number(totalProductsInWishlist) ? true : false;
 
-  // async function getAddress() {
-  //   const ethers = require("ethers");
-  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //   const signer = provider.getSigner();
-  //   const addr = await signer.getAddress();
-  //   updateAddress(addr);
-  // }
-
-  // function updateButton() {
-  //   const ethereumButton = document.querySelector('.enableEthereumButton');
-  //   ethereumButton.textContent = "Connected";
-  //   ethereumButton.classList.remove("hover:bg-blue-70");
-  //   ethereumButton.classList.remove("bg-blue-500");
-  //   ethereumButton.classList.add("hover:bg-green-70");
-  //   ethereumButton.classList.add("bg-green-500");
-  // }
-
-  // async function connectWebsite() {
-
-  //   const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-  //   if (chainId !== '0x5') {
-  //     //alert('Incorrect network! Switch your metamask network to Rinkeby');
-  //     await window.ethereum.request({
-  //       method: 'wallet_switchEthereumChain',
-  //       params: [{ chainId: '0xaa36a7' }],
-  //     })
-  //   }
-  //   await window.ethereum.request({ method: 'eth_requestAccounts' })
-  //     .then(() => {
-  //       updateButton();
-  //       console.log("here");
-  //       getAddress();
-  //       window.location.replace(location.pathname)
-  //     });
-  // }
-
-  // useEffect(() => {
-  //   if (window.ethereum == undefined)
-  //     return;
-  //   let val = window.ethereum.isConnected();
-  //   if (val) {
-  //     console.log("here");
-  //     getAddress();
-  //     toggleConnect(val);
-  //     updateButton();
-  //   }
-
-  //   window.ethereum.on('accountsChanged', function (accounts) {
-  //     window.location.replace(location.pathname)
-  //   })
-  // });
-
   const { isConnected } = useAccount();
   useEffect(() => {
     if (!isConnected && location.pathname === "/sellNFT") {
@@ -114,7 +60,6 @@ export const Header = () => {
     }
   }, [isConnected, location.pathname, navigate]);
 
-  const { loading, setLoading } = useData(); // 需要 setLoading 方法
   return (
     <nav>
       <div className="nav-logo-home-button">
@@ -128,7 +73,7 @@ export const Header = () => {
         </NavLink>
       </div>
 
-      <div className="nav-input-search">
+      {/* <div className="nav-input-search">
         <input
           onChange={(e) =>
             dispatch({ type: "SEARCH", payload: e.target.value })
@@ -141,7 +86,7 @@ export const Header = () => {
         <button>
           <GrSearch />
         </button>
-      </div>
+      </div> */}
 
       <div
         className={
@@ -150,20 +95,6 @@ export const Header = () => {
             : "nav-link-container"
         }
       >
-        <NavLink
-          onClick={() => setShowHamburger(true)}
-          style={getActiveStyle}
-          to="/product-listing"
-        >
-          Explore
-        </NavLink>
-        {/* <NavLink
-        onClick={() => setShowHamburger(true)}
-        style={getActiveStyle}
-        to={auth.isAuth ? "/profile" : "/login"}
-      >
-        {!auth.isAuth ? "Login" : "Profile"}
-      </NavLink> */}
         <NavLink style={getActiveStyle} to="/marketplace">Marketplace</NavLink>
         <NavLink style={getActiveStyle} to="/sellNFT">Sell NFT</NavLink>
         <NavLink
@@ -173,37 +104,6 @@ export const Header = () => {
         >
           {isConnected ? "Profile" : "Login"}
         </NavLink>
-        {/* <Link>
-        <button className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" onClick={connectWebsite}>{connected ? "Connected" : "Connect Wallet"}</button>
-      </Link> */}
-        {/* <ConnectButton>Connect with Wallet</ConnectButton> */}
-        {/* <NavLink
-        onClick={() => setShowHamburger(true)}
-        style={getActiveStyle}
-        to="wishlist"
-      >
-        <span>{!showHamburger ? "Wishlist" : ""}</span>
-        <CgHeart size={25} className="wishlist" />{" "}
-        {isProductInWishlist() && (
-          <span className="cart-count cart-count-mobile">
-            {totalProductsInWishlist}
-          </span>
-        )}
-      </NavLink> */}
-        {/* <NavLink
-        onClick={() => setShowHamburger(true)}
-        style={getActiveStyle}
-        to="/cart"
-      >
-        <span>{!showHamburger ? "Cart" : ""}</span>
-        <CgShoppingCart size={25} className="cart" />{" "}
-        {isProductInCart() && (
-          <span className="cart-count cart-count-mobile">
-            {" "}
-            {totalProductsInCart}{" "}
-          </span>
-        )}
-      </NavLink> */}
       </div>
       {showHamburger && (
         <div className="hamburger-icon" onClick={() => setShowHamburger(false)}>
