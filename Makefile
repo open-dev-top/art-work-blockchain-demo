@@ -3,13 +3,13 @@
 .PHONY: install start clean build test node deploy_local deploy_sepolia
 
 # Install dependencies with compatibility for legacy peer dependencies
-install	:; npm install
+install	:; npm install --legacy-peer-deps
 
 # Start the project
 start :; npm run start
 
 # Clean Hardhat compiled files and cache
-clean :; npx hardhat clean
+clean :; npx hardhat clean && rm -rf node_modules && npm cache clean --force
 
 # Compile smart contracts
 build :; npx hardhat compile
