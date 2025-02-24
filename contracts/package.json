@@ -63,15 +63,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.2.3",
-    "@nomiclabs/hardhat-etherscan": "^3.1.8",
-    "@nomiclabs/hardhat-waffle": "^2.0.6",
-    "autoprefixer": "^10.4.20",
-    "ethers": "^5.7.2",
-    "hardhat": "^2.22.18",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.0.8"
   }
 }
