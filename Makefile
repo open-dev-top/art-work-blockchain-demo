@@ -3,7 +3,7 @@
 .PHONY: install start clean build test node deploy_local deploy_sepolia
 
 # Install dependencies with compatibility for legacy peer dependencies
-install	:; npm install --legacy-peer-deps
+install	:; npm install
 
 # Start the project
 start :; npm run start
