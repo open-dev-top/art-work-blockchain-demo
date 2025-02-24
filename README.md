@@ -2,6 +2,10 @@
 ## NFT Marketplace Brief 
 
 ![nftmarket_desgin.png](./nftmarket_desgin.png)
+[ Three Roles ]
+- I -> Seller
+- M -> Marketplace
+- Z -> Buyer
 
 [ Create a token ]
 - I mint a token, and transfer to market
@@ -69,7 +73,7 @@ make deploy_local
 Deploy smart contracts to the Sepolia testnet:
 
 ```sh
-deploy_sepolia :; npx hardhat run --network sepolia scripts/deploy.js
+make deploy_sepolia
 ```
 
 Verify your contract:
